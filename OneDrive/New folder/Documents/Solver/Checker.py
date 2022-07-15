@@ -60,10 +60,23 @@ class Checker():
                     new_str += "("
             elif str[i] == ")":
                 # the ")" is not the last char and there is a number or variable after the str
-                if i < len(str) and (str[i+1].isnumeric() or str[i+1].isalpha()):
-                    new_str += ")*"
+                if i < len(str)-1:
+                    if (str[i+1].isnumeric() or str[i+1].isalpha()):
+                        new_str += ")*"
+                    else:
+                        new_str += ")"
                 else:
                     new_str += ")"
+            elif str[i] == "-":
+                # changes the 2-x -> 2+-x; -2 -> +-2
+                if i < len(str) - 1:
+                    # edge case: -(2x+3) =
+                    if str[i+1] == "(":
+                        new_str += "-1*"
+                    else:
+                        new_str += "+-"
+                else:
+                    new_str += "+-"
             else:
                 new_str += str[i]
 
@@ -75,7 +88,6 @@ class Checker():
     def solve(self):
         # print(f"Solving: {self.problem}")
         var = symbols(self.variable)
-        print(self.problem_left)
         lhs = eval(self.problem_left)
         rhs = eval(self.problem_right)
         answer = str(solve(Eq(lhs, rhs), var)[0])
