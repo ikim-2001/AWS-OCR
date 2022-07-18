@@ -2,6 +2,7 @@ from Checker import *
 from Feedback import *
 import itertools
 import string
+
 class Rules(Problem):
     def __init__(self):
         Problem.__init__(self)

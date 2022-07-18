@@ -1,6 +1,7 @@
 from sympy import symbols, solve, Eq
 from json_form import *
 
+
 class Checker():
     def __init__(self):
         # initialize the problem, output, and correct fields

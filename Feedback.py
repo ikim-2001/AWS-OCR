@@ -38,7 +38,8 @@ class Problem(Checker):
                       f"Line {int(i)} : {array[i-1].content}\n"
                       f"Line {int(i+1)}: {array[i].content}")
                 return array[i].content
-
+ 
+ 
 
 
 class Line():
